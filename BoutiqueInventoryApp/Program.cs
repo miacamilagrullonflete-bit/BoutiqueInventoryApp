@@ -1,9 +1,9 @@
 ﻿try
 {
-  
+
     Dictionary<int, string> categorias = new Dictionary<int, string>();
     Dictionary<int, string> tallas = new Dictionary<int, string>();
-    
+
     List<int> prendaIds = new List<int>();
     List<string> prendaNombres = new List<string>();
     List<decimal> prendaPrecios = new List<decimal>();
@@ -11,7 +11,7 @@
     List<int> prendaCategoriaIds = new List<int>();
     List<int> prendaTallaIds = new List<int>();
     int siguientePrendaId = 1;
-    
+
     categorias.Add(1, "Camisas");
     categorias.Add(2, "Pantalones");
     categorias.Add(3, "Vestidos");
@@ -19,7 +19,7 @@
     tallas.Add(2, "M");
     tallas.Add(3, "L");
     tallas.Add(4, "XL");
-   
+
     string LeerTexto(string mensaje)
     {
         string valor;
@@ -35,7 +35,7 @@
         } while (string.IsNullOrWhiteSpace(valor));
         return valor.Trim();
     }
-    
+
     int LeerEntero(string mensaje)
     {
         while (true)
@@ -48,7 +48,7 @@
             Console.WriteLine("Entrada inválida. Escriba un número entero.");
         }
     }
-    
+
     decimal LeerDecimal(string mensaje)
     {
         while (true)
@@ -61,7 +61,7 @@
             Console.WriteLine("Entrada inválida. Escriba un número válido (no negativo).");
         }
     }
-   
+
     bool Confirmar(string mensaje)
     {
         Console.Write(mensaje + " (S/N): ");
@@ -69,13 +69,13 @@
 
         return respuesta.Trim().Equals("S", StringComparison.OrdinalIgnoreCase);
     }
-    
+
     void Pausa()
     {
         Console.WriteLine("\nPresione una tecla para continuar...");
         Console.ReadKey();
     }
-    
+
     int ElegirDeDiccionario(Dictionary<int, string> diccionario, string titulo)
     {
         Console.WriteLine("\n" + titulo);
@@ -91,7 +91,7 @@
         }
         return id;
     }
-    
+
     void AgregarCatalogo(Dictionary<int, string> catalogo, string singular)
     {
         Console.Clear();
@@ -157,13 +157,13 @@
             if (otro.Key != id &&
             otro.Value.Equals(nuevoNombre, StringComparison.OrdinalIgnoreCase))
             {
-                Console.WriteLine("Ya existe otro registro con ese nombre.");
+                Console.WriteLine("Ya existe otro registro con ese nombre");
                 Pausa();
                 return;
             }
         }
         catalogo[id] = nuevoNombre;
-        Console.WriteLine("\nRegistro modificado correctamente.");
+        Console.WriteLine("\nRegistro modificado correctamente");
         Pausa();
     }
     void EliminarCatalogo(Dictionary<int, string> catalogo, string singular, List<int> idsEnUso)
@@ -184,24 +184,24 @@
         int id = LeerEntero("\nId a eliminar: ");
         if (!catalogo.ContainsKey(id))
         {
-            Console.WriteLine("Ese Id no existe.");
+            Console.WriteLine("Ese Id no existe");
             Pausa();
             return;
         }
         if (idsEnUso.Contains(id))
         {
-            Console.WriteLine("No se puede eliminar porque hay prendas que la usan.");
+            Console.WriteLine("No se puede eliminar porque hay prendas que la usan");
             Pausa();
             return;
         }
         if (Confirmar("¿Confirma la eliminación?"))
         {
             catalogo.Remove(id);
-            Console.WriteLine("Registro eliminado correctamente.");
+            Console.WriteLine("Registro eliminado correctamente");
         }
         else
         {
-            Console.WriteLine("Eliminación cancelada.");
+            Console.WriteLine("Eliminación cancelada");
         }
         Pausa();
     }
@@ -211,7 +211,7 @@
         Console.WriteLine("===== LISTA DE " + singular.ToUpper() + "S =====");
         if (catalogo.Count == 0)
         {
-            Console.WriteLine("No hay registros.");
+            Console.WriteLine("No hay registros");
         }
         else
         {
@@ -247,13 +247,13 @@
                 case 5: ListarCatalogo(catalogo, singular); break;
                 case 6: seguirEnMenu = false; break;
                 default:
-                    Console.WriteLine("Opción inválida.");
+                    Console.WriteLine("Opción inválida");
                     Pausa();
                     break;
             }
         }
     }
-    
+
     void MostrarPrenda(int posicion)
 
     {
@@ -271,24 +271,24 @@
         Console.WriteLine("===== AGREGAR PRENDA =====");
         if (categorias.Count == 0 || tallas.Count == 0)
         {
-            Console.WriteLine("Primero debe registrar al menos una categoría y una talla.");
+            Console.WriteLine("Primero debe registrar una categoría y una talla");
             Pausa();
             return;
         }
-        string nombre = LeerTexto("Nombre de la prenda: ");
+        string nombre = LeerTexto("Nombre de la prenda que buscas: ");
         decimal precio;
         do
         {
             precio = LeerDecimal("Precio: ");
             if (precio <= 0)
             {
-                Console.WriteLine("El precio debe ser mayor que cero.");
+                Console.WriteLine("El precio debe ser mayor que cero");
             }
         } while (precio <= 0);
         int cantidad = LeerEntero("Existencias: ");
         while (cantidad < 0)
         {
-            Console.WriteLine("Las existencias no pueden ser negativas.");
+            Console.WriteLine("Las existencias no pueden ser negativas");
             cantidad = LeerEntero("Existencias: ");
         }
         int categoriaId = ElegirDeDiccionario(categorias, "Categorías disponibles:");
@@ -304,14 +304,14 @@
             Pausa();
             return;
         }
-        
+
         for (int i = 0; i < prendaIds.Count; i++)
         {
             if (prendaNombres[i].Equals(nombre, StringComparison.OrdinalIgnoreCase) &&
             prendaCategoriaIds[i] == categoriaId &&
             prendaTallaIds[i] == tallaId)
             {
-                Console.WriteLine("Ya existe esa prenda con la misma categoría y talla.");
+                Console.WriteLine("Ya existe esa prenda con la misma categoría y talla");
                 Pausa();
                 return;
             }
@@ -332,7 +332,6 @@
         Console.WriteLine("===== BUSCAR PRENDAS =====");
         Console.WriteLine("1. Por Id");
         Console.WriteLine("2. Por nombre");
-
         Console.WriteLine("3. Por categoría");
         Console.WriteLine("4. Por talla");
         Console.WriteLine("5. Por rango de precio");
@@ -407,7 +406,7 @@
                     decimal maximo = LeerDecimal("Precio máximo: ");
                     if (maximo < minimo)
                     {
-                        Console.WriteLine("El precio máximo no puede ser menor que el mínimo.");
+                        Console.WriteLine("El precio máximo no puede ser menor que el mínimo");
                         Pausa();
                         return;
                     }
@@ -510,11 +509,11 @@
                     break;
                 }
             default:
-                Console.WriteLine("Opción inválida.");
+                Console.WriteLine("Opción inválida");
                 Pausa();
                 return;
         }
-        Console.WriteLine("\nPrenda modificada correctamente.");
+        Console.WriteLine("\nPrenda modificada correctamente");
         Pausa();
     }
     void EliminarPrenda()
@@ -526,7 +525,7 @@
         if (posicion == -1)
 
         {
-            Console.WriteLine("Prenda no encontrada.");
+            Console.WriteLine("Prenda no encontrada");
             Pausa();
             return;
         }
@@ -539,11 +538,11 @@
             prendaExistencias.RemoveAt(posicion);
             prendaCategoriaIds.RemoveAt(posicion);
             prendaTallaIds.RemoveAt(posicion);
-            Console.WriteLine("Prenda eliminada correctamente.");
+            Console.WriteLine("Prenda eliminada correctamente");
         }
         else
         {
-            Console.WriteLine("Eliminación cancelada.");
+            Console.WriteLine("Eliminación cancelada");
         }
         Pausa();
     }
@@ -553,7 +552,7 @@
         Console.WriteLine("===== LISTA DE PRENDAS =====");
         if (prendaIds.Count == 0)
         {
-            Console.WriteLine("No hay prendas registradas.");
+            Console.WriteLine("No hay prendas registradas");
         }
         else
         {
@@ -595,7 +594,7 @@
             }
         }
     }
-   
+
     void RegistrarEntrada()
     {
         Console.Clear();
@@ -605,14 +604,14 @@
 
         if (posicion == -1)
         {
-            Console.WriteLine("Prenda no encontrada.");
+            Console.WriteLine("Prenda no encontrada");
             Pausa();
             return;
         }
         int cantidad = LeerEntero("Cantidad que ingresa: ");
         if (cantidad <= 0)
         {
-            Console.WriteLine("La cantidad debe ser mayor que cero.");
+            Console.WriteLine("La cantidad debe ser mayor que cero");
             Pausa();
             return;
         }
@@ -628,7 +627,7 @@
         int posicion = prendaIds.IndexOf(id);
         if (posicion == -1)
         {
-            Console.WriteLine("Prenda no encontrada.");
+            Console.WriteLine(" La prenda no ha sido encontrada");
             Pausa();
             return;
         }
@@ -636,14 +635,14 @@
         int cantidad = LeerEntero("Cantidad a vender: ");
         if (cantidad <= 0)
         {
-            Console.WriteLine("La cantidad debe ser mayor que cero.");
+            Console.WriteLine("La cantidad debe ser mayor que cero");
             Pausa();
             return;
 
         }
         if (cantidad > prendaExistencias[posicion])
         {
-            Console.WriteLine("No hay suficientes existencias.");
+            Console.WriteLine("No hay suficientes existencias");
             Pausa();
             return;
         }
@@ -696,7 +695,7 @@
         Console.WriteLine("===== EXISTENCIAS POR CATEGORÍA =====");
         if (categorias.Count == 0)
         {
-            Console.WriteLine("No hay categorías registradas.");
+            Console.WriteLine("No hay categorías registradas");
         }
         else
         {
@@ -745,7 +744,7 @@
             }
         }
     }
-  
+
     bool ejecutando = true;
     while (ejecutando)
     {
@@ -755,7 +754,6 @@
         Console.WriteLine("======================================");
         Console.WriteLine("1. Categorías");
         Console.WriteLine("2. Tallas");
-
         Console.WriteLine("3. Prendas");
         Console.WriteLine("4. Existencias y reportes");
         Console.WriteLine("5. Salir");
@@ -779,11 +777,11 @@
                 if (Confirmar("¿Seguro que desea salir?"))
                 {
                     ejecutando = false;
-                    Console.WriteLine("\nGracias por usar el sistema. ¡Hasta luego!");
+                    Console.WriteLine("\nGracias por usar el sistema. ¡chau!");
                 }
                 break;
             default:
-                Console.WriteLine("Opción inválida. Intente de nuevo.");
+                Console.WriteLine("Opción inválida, pls intente de nuevo");
                 Pausa();
                 break;
         }
