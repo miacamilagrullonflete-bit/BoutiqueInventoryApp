@@ -1,7 +1,7 @@
 # Registro de Ropa para Boutique 
 
 Aplicación de consola en C# (.NET 10) para administrar prendas, categorías, tallas y proveedores de una boutique,
-con registro de ventas, descuentos y reportes de existencias. Los datos se guardan en **SQL Server 2022 Express**.
+con registro de ventas, descuentos y reportes de existencias. Los datos se guardan en **SQL Server 2022 Express**
 
 ## Tecnologías
 
@@ -51,10 +51,10 @@ erDiagram
     PRENDAS ||..o{ VENTAS : "se vende"
 ```
 
-- Cada prenda pertenece a una categoría, una talla y un proveedor (llaves foráneas).
+- Cada prenda pertenece a una categoría, una talla y un proveedor (llaves foráneas)
 - `Ventas` guarda el nombre y el precio al momento de la venta y **no** tiene llave foránea hacia `Prendas`,
-  para que el historial se conserve aunque la prenda se elimine.
-- Reglas en la base: precio mayor que cero, existencias no negativas, descuento entre 0 y 100.
+  para que el historial se conserve aunque la prenda se elimine
+- Reglas en la base: precio mayor que cero, existencias no negativas descuento entre 0 y 100
 
 ## Cómo ejecutarlo
 
@@ -85,5 +85,3 @@ erDiagram
 | `BaseDatos` | Único lugar que ejecuta SQL (consultas con parámetros) |
 | `Inventario` | Lógica del negocio, conectada a `BaseDatos` |
 | `MenuBoutique` | Menús y entrada/salida por consola |
-
-## Herramientas
