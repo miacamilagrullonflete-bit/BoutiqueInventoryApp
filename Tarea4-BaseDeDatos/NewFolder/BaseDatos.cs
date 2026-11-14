@@ -7,11 +7,7 @@
         this.cadenaConexion = cadenaConexion;
     }
 
-    // ==============================
-    // AYUDA: ejecutan SQL y siempre cierran la conexión
-    // ==============================
-
-    // Para UPDATE y DELETE
+    
     private void EjecutarComando(string sql, params SqlParameter[] parametros)
     {
         SqlConnection conexion = new SqlConnection(cadenaConexion);
@@ -29,7 +25,6 @@
         }
     }
 
-    // Para INSERT: devuelve el Id que SQL Server le asignó al registro nuevo
     private int EjecutarInsert(string sql, params SqlParameter[] parametros)
     {
         SqlConnection conexion = new SqlConnection(cadenaConexion);
@@ -47,7 +42,6 @@
         }
     }
 
-    // Para SELECT: ejecuta "alLeerFila" una vez por cada fila que devuelve la consulta
     private void Consultar(string sql, Action<SqlDataReader> alLeerFila)
     {
         SqlConnection conexion = new SqlConnection(cadenaConexion);
@@ -71,10 +65,7 @@
         }
     }
 
-    // ==============================
-    // CATEGORÍAS
-    // ==============================
-
+   
     public List<Categoria> CargarCategorias()
     {
         List<Categoria> lista = new List<Categoria>();
@@ -106,9 +97,6 @@
         new SqlParameter("@Id", id));
     }
 
-    // ==============================
-    // TALLAS
-    // ==============================
 
     public List<Talla> CargarTallas()
     {
@@ -141,10 +129,7 @@
         new SqlParameter("@Id", id));
     }
 
-    // ==============================
-    // PROVEEDORES
-    // ==============================
-
+   
     public List<Proveedor> CargarProveedores()
     {
         List<Proveedor> lista = new List<Proveedor>();
@@ -180,9 +165,6 @@
         new SqlParameter("@Id", id));
     }
 
-    // ==============================
-    // PRENDAS
-    // ==============================
 
     public List<Prenda> CargarPrendas(Dictionary<int, Categoria> categorias,
     Dictionary<int, Talla> tallas,
