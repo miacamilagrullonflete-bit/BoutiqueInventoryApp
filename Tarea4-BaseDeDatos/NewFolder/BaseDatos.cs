@@ -65,7 +65,7 @@
         }
     }
 
-   
+
     public List<Categoria> CargarCategorias()
     {
         List<Categoria> lista = new List<Categoria>();
@@ -129,7 +129,7 @@
         new SqlParameter("@Id", id));
     }
 
-   
+
     public List<Proveedor> CargarProveedores()
     {
         List<Proveedor> lista = new List<Proveedor>();
@@ -165,7 +165,7 @@
         new SqlParameter("@Id", id));
     }
 
-
+  
     public List<Prenda> CargarPrendas(Dictionary<int, Categoria> categorias,
     Dictionary<int, Talla> tallas,
     Dictionary<int, Proveedor> proveedores)
@@ -227,9 +227,7 @@
         new SqlParameter("@Id", id));
     }
 
-    // ==============================
-    // VENTAS
-    // ==============================
+
 
     public List<Venta> CargarVentas()
     {
