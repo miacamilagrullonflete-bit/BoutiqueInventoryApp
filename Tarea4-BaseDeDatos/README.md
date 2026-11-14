@@ -1,4 +1,4 @@
-# Registro de Ropa para Boutique (Tarea 4)
+# Registro de Ropa para Boutique 
 
 Aplicación de consola en C# (.NET 10) para administrar prendas, categorías, tallas y proveedores de una boutique,
 con registro de ventas, descuentos y reportes de existencias. Los datos se guardan en **SQL Server 2022 Express**.
@@ -87,5 +87,3 @@ erDiagram
 | `MenuBoutique` | Menús y entrada/salida por consola |
 
 ## Herramientas
-
-Se utilizó Claude (asistente de IA) como apoyo para la guía y revisión del código.
